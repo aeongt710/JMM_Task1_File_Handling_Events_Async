@@ -13,7 +13,6 @@ namespace task1
         {
 
             Menu();
-            //Console.WriteLine(Functionality.addUser());
 
         }
 
@@ -41,7 +40,7 @@ namespace task1
                 Console.WriteLine("Select an option");
                 input = Console.ReadLine();
                 if (input.Equals("1"))
-                    Functionality.addUser();
+                    await Functionality.addUser();
                 else if (input.Equals("2"))
                     Functionality.updateUser();
                 else if (input.Equals("3"))
@@ -51,20 +50,11 @@ namespace task1
 
             } while (!input.Equals("4"));
         }
-
-
-        //public static  delegate void SuccessMessageDelegate(object sender, MyEventArgs myEventArgs);
-
-        //public delegate void MyHandler2(object sender, MyEventArgs e);
-
-
-
-
     }
+
     public delegate void MessageDelegate();
     class Functionality
     {
-        //public static event SuccessMessageDelegate ProcessCompleted;
         public static void updateUser()
         {
             Console.WriteLine("Enter User Phone No.");
@@ -184,7 +174,6 @@ namespace task1
             Display += Message;
             string projPath = Path.GetFullPath("..\\..\\..\\");
             string path = projPath + "Data/" + u.getPhone() + ".txt";
-            //if (!File.Exists(path))
             {
                 using (StreamWriter sw = File.CreateText(path))
                 {
