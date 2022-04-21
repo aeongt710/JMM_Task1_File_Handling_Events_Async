@@ -26,12 +26,12 @@ namespace task1
 
 
 
-        public static void Menu()
+        public static async void Menu()
         {
             string input = "";
             do
             {
-                list = Functionality.getAllUsers();
+                list = await Functionality.getAllUsers();
                 Console.WriteLine("\n");
                 Console.WriteLine("----------Main Menu---------");
                 Console.WriteLine("1.Add User");
@@ -118,7 +118,7 @@ namespace task1
         }
 
 
-        public static bool addUser()
+        public static async Task<bool> addUser()
         {
             Console.WriteLine("Ente First Name (only chars 13 char long)");
             string firstname = Console.ReadLine();
@@ -142,7 +142,7 @@ namespace task1
             {
                 if (!checkUserExists(user))
                 {
-                    writeUser(user).Wait();
+                    await writeUser(user);
                     return true;
                 }
                 else
@@ -159,7 +159,7 @@ namespace task1
             return false;
         }
 
-        public static List<User> getAllUsers()
+        public static async Task<List<User>> getAllUsers()
         {
             List<User> list = new List<User>();
             string projPath = Path.GetFullPath("..\\..\\..\\");
@@ -168,7 +168,7 @@ namespace task1
             FileInfo[] files = d.GetFiles("*.txt");
             foreach (var file in files)
             {
-                User u =  readUser(file.Name).Result;
+                User u = await readUser(file.Name);
                 list.Add(u);
             }
             return list;
